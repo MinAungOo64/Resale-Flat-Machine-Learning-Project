@@ -81,6 +81,7 @@ town and flat model do not have clear ordering hence will be one-hot encoded.
 ### The Two dataframes  
 As mentioned above, 2 dataframes will be created, df_base covering the period from 2012 to 2025 and df_post_covid covering the period post-covid from 2020 to 2025.  
 We save them as `.pkl' files
+
 ---
 ## Splitting Train and Test
 We split the Train Test to be 80/20. We do not want a random split as the objective is for the model to predict future unseen resale prices. As such the train set will be data from earlier periods than those of the test set.
@@ -127,6 +128,7 @@ The F-test returns a p-value close to 0, indicating that the regression model as
 The t-tests for individual coefficients identify three predictors that are not statistically significant at the 5% level (p > 0.05): flat_model_Model A2, flat_model_New Generation, flat_model_Premium Apartment
 
 Since the three predictors are one-hot encoded variables or dummy variables part of a category, we have decided to keep them instead of dropping.
+
 ---
 ## Linear Regression, Regularisation and Polynomial Regression
 
