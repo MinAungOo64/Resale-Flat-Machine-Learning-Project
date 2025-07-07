@@ -78,7 +78,7 @@ town and flat model do not have clear ordering hence will be one-hot encoded.
 ![image](https://github.com/user-attachments/assets/23a022b8-3a57-4f6d-87fc-9ba016d6d00d)
 
 
-### The Two dataframes
+### The Two dataframes  
 As mentioned above, 2 dataframes will be created, df_base covering the period from 2012 to 2025 and df_post_covid covering the period post-covid from 2020 to 2025.  
 We save them as `.pkl' files
 ---
@@ -115,13 +115,13 @@ y_post_test.to_pickle("y_post_test.pkl")
 ````
 ---
 ## Oridnary Least Squares, F-test, t-test
-### df_base
+### df_base  
 The F-test returns a p-value close to 0, indicating that the regression model as a whole is statistically significant — i.e., at least one predictor has a non-zero effect on resale price.
 
 The t-tests for individual coefficients identify six predictors that are not statistically significant at the 5% level (p > 0.05): town_SERANGOON, flat_model_Apartment, flat_model_Premium Apartment Loft, flat_model_Premium Maisonette, flat_model_Type S1, and flat_model_Type S2.
 
 Since the six predictors are one-hot encoded variables or dummy variables part of a category, we have decided to keep them instead of dropping.
-### df_post_covid
+### df_post_covid  
 The F-test returns a p-value close to 0, indicating that the regression model as a whole is statistically significant — i.e., at least one predictor has a non-zero effect on resale price.
 
 The t-tests for individual coefficients identify three predictors that are not statistically significant at the 5% level (p > 0.05): flat_model_Model A2, flat_model_New Generation, flat_model_Premium Apartment
