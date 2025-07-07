@@ -81,14 +81,36 @@ town and flat model do not have clear ordering hence will be one-hot encoded.
 ### The Two dataframes
 As mentioned above, 2 dataframes will be created, df_base covering the period from 2012 to 2025 and df_post_covid covering the period post-covid from 2020 to 2025.  
 We save them as `.pkl' files
-
-
-
-
-
 ---
+## Splitting Train and Test
+We split the Train Test to be 80/20. We do not want a random split as the objective is for the model to predict future unseen resale prices. As such the train set will be data from earlier periods than those of the test set.
 
-The data is first processed in "EDA and Data Processing.ipynb" and saved as .pkl files.  
-Two dataframes were created, "df_base" contains data from 2012 to 2025 and "df_post_covid" contains data post covid-19.  
-The processed data is then fed into multiple machine learning models in each .ipynb files.  
-For further details, click on each ipynb files.
+```python
+# 1. Sort by time column
+df_base_sorted = df_base.sort_values(by='months_since_base')
+df_post_sorted = df_post_covid.sort_values(by='months_since_base')
+
+# 2. Compute split indices
+split_idx_base = int(len(df_base_sorted) * 0.8)
+split_idx_post = int(len(df_post_sorted) * 0.8)
+
+# 3. Split df_base into train/test
+df_base_train = df_base_sorted.iloc[:split_idx_base]
+df_base_test = df_base_sorted.iloc[split_idx_base:]
+```
+
+After splitting train and test, we separate the input features X and the output y for both dataframes. We will have a total of 8 files.
+
+```python
+# 5. Save all 8 files
+X_base_train.to_pickle("X_base_train.pkl")
+X_base_test.to_pickle("X_base_test.pkl")
+y_base_train.to_pickle("y_base_train.pkl")
+y_base_test.to_pickle("y_base_test.pkl")
+
+X_post_train.to_pickle("X_post_train.pkl")
+X_post_test.to_pickle("X_post_test.pkl")
+y_post_train.to_pickle("y_post_train.pkl")
+y_post_test.to_pickle("y_post_test.pkl")
+````
+---
