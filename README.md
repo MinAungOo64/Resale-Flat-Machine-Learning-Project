@@ -163,7 +163,7 @@ Since the three predictors are one-hot encoded variables or dummy variables part
 
 ---
 ## Random Forest
-The values have to be logged first.
+The MSE calculated here is logged, the values should be exponentiated before calculating MSE. Due to my laptop dying, I had yet to rerun the model to recompute MSE in exponentiated form.
 
 | Data | Model         | Hyperparam                                                                      | Train MSE | Test MSE | Test/Train MSE Ratio |
 |------|---------------|-------------------------------------------------------------------------------- |-----------|----------|-----------------------|
