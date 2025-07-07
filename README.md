@@ -114,3 +114,37 @@ y_post_train.to_pickle("y_post_train.pkl")
 y_post_test.to_pickle("y_post_test.pkl")
 ````
 ---
+## Oridnary Least Squares, F-test, t-test
+### df_base
+The F-test returns a p-value close to 0, indicating that the regression model as a whole is statistically significant — i.e., at least one predictor has a non-zero effect on resale price.
+
+The t-tests for individual coefficients identify six predictors that are not statistically significant at the 5% level (p > 0.05): town_SERANGOON, flat_model_Apartment, flat_model_Premium Apartment Loft, flat_model_Premium Maisonette, flat_model_Type S1, and flat_model_Type S2.
+
+Since the six predictors are one-hot encoded variables or dummy variables part of a category, we have decided to keep them instead of dropping.
+### df_post_covid
+The F-test returns a p-value close to 0, indicating that the regression model as a whole is statistically significant — i.e., at least one predictor has a non-zero effect on resale price.
+
+The t-tests for individual coefficients identify three predictors that are not statistically significant at the 5% level (p > 0.05): flat_model_Model A2, flat_model_New Generation, flat_model_Premium Apartment
+
+Since the three predictors are one-hot encoded variables or dummy variables part of a category, we have decided to keep them instead of dropping.
+---
+## Linear Regression, Regularisation and Polynomial Regression
+
+| Data | Model                    | Hyperparam       | MAE       | MSE         | RMSE      | R²    | Adjusted R² |
+|------|--------------------------|------------------|-----------|-------------|-----------|-------|--------------|
+| base | Linear Regression        | -                | 1.28e+05  | 2.19e+10    | 1.48e+05  | 0.383 | 0.383        |
+| base | L1 Regularisation Lasso  | alpha=2.16e-04   | 1.28e+05  | 2.21e+10    | 1.49e+05  | 0.380 | 0.379        |
+| base | L2 Regularisation Ridge  | alpha=1000.0     | 1.28e+05  | 2.21e+10    | 1.49e+05  | 0.379 | 0.379        |
+| base | Polynomial (degree=2)    | degree=2         | 4.55e+04  | 4.33e+09    | 6.58e+04  | 0.878 | 0.878        |
+| post | Linear Regression        | -                | 4.72e+04  | 3.90e+09    | 6.24e+04  | 0.899 | 0.899        |
+| post | L1 Regularisation Lasso  | alpha=2.19e-04   | 4.70e+04  | 3.89e+09    | 6.23e+04  | 0.900 | 0.900        |
+| post | L2 Regularisation Ridge  | alpha=100.0      | 4.71e+04  | 3.89e+09    | 6.24e+04  | 0.900 | 0.899        |
+| post | Polynomial (degree=2)    | degree=2         | 4.39e+04  | 3.91e+09    | 6.26e+04  | 0.899 | 0.899        |
+
+---
+## KNN
+---
+## Decision Tree
+---
+## Random Forest
+---
