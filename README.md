@@ -78,7 +78,7 @@ town and flat model do not have clear ordering hence will be one-hot encoded.
 ![image](https://github.com/user-attachments/assets/23a022b8-3a57-4f6d-87fc-9ba016d6d00d)
 
 
-### The Two dataframes  
+### Two dataframes  
 As mentioned above, 2 dataframes will be created, df_base covering the period from 2012 to 2025 and df_post_covid covering the period post-covid from 2020 to 2025.  
 We save them as `.pkl' files
 
@@ -145,8 +145,29 @@ Since the three predictors are one-hot encoded variables or dummy variables part
 
 ---
 ## KNN
+
+| Data | Model                  | Hyperparam                                 | MAE       | MSE         | RMSE      | R²    | Adjusted R² |
+|------|------------------------|---------------------------------------------|-----------|-------------|-----------|-------|--------------|
+| base | KNN + Linear Regression | n=5, weights=distance                      | 5.85e+04  | 6.18e+09    | 7.86e+04  | 0.826 | 0.826        |
+| post | KNN + Linear Regression | n=7, weights=distance                      | 4.55e+04  | 3.97e+09    | 6.30e+04  | 0.897 | 0.897        |
+
 ---
 ## Decision Tree
+
+| Data | Model             | Hyperparam                                                                 | Train MSE     | Test MSE      | Test/Train MSE Ratio |
+|------|-------------------|----------------------------------------------------------------------------|---------------|---------------|-----------------------|
+| base | Decision Tree     | max_depth=29, min_split=13, min_leaf=3                                     | 9.57e+08      | 7.26e+09      | 7.58                  |
+| base | Gradient Boosting | lr=0.162, max_depth=9, min_leaf=3, min_split=5, n_estimators=236           | 8.59e+08      | 5.64e+09      | 6.57                  |
+| post | Decision Tree     | max_depth=25, min_split=17, min_leaf=3                                     | 1.44e+09      | 5.35e+09      | 3.73                  |
+| post | Gradient Boosting | lr=0.0737, max_depth=9, min_leaf=5, min_split=2, n_estimators=253          | 1.06e+09      | 3.40e+09      | 3.21                  |
+
 ---
 ## Random Forest
+The values have to be logged first.
+
+| Data | Model         | Hyperparam                                                                      | Train MSE | Test MSE | Test/Train MSE Ratio |
+|------|---------------|-------------------------------------------------------------------------------- |-----------|----------|-----------------------|
+| base | Random Forest | max_depth=39, max_features=log2, min_leaf=1, min_split=5, n_est=149             | 0.002004  | 0.015404 | 7.69                  |
+| post | Random Forest | max_depth=39, max_features=log2, min_leaf=1, min_split=5, n_est=149             | 0.001759  | 0.008635 | 4.91                  |
+
 ---
